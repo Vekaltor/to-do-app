@@ -1,0 +1,138 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-to-add-task {
+  width: 700px;
+  margin-top: 50px;
+  border-bottom: 2px solid rgba(180, 180, 180, 0.378);
+}
+
+.form-to-add-task form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: 0 auto 40px auto;
+}
+
+.form-to-add-task form label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.form-to-add-task form label input {
+  padding: 5px 10px;
+  margin: 0 10px;
+}
+
+.form-to-add-task form label:nth-of-type(3) {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.form-to-add-task form button {
+  padding: 5px 20px;
+}
+
+.list-tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-tasks h1 {
+  margin: 25px 0;
+}
+.list-tasks .task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+}
+
+.list-tasks .task.priority .content .text {
+  color: red;
+}
+
+.list-tasks .task .content .text {
+  font-weight: bolder;
+}
+
+.list-tasks .task .content .finish-date {
+  display: block;
+  width: 100%;
+}
+
+.list-tasks .task .options {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-tasks .task .options .status {
+  float: left;
+  padding: 8px 15px;
+  margin-right: 65px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.list-tasks .task .options .status:hover {
+  background-color: #333;
+  color: whitesmoke;
+}
+
+.list-tasks .task .options .delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  float: left;
+  height: 100%;
+  width: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.list-tasks .task .options > svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 11px;
+  top: 4px;
+  font-size: 24px;
+  color: #333;
+}
+
+.list-tasks .task > span {
+  margin: 0 5px;
+}
+
+.list-tasks .task > span.date {
+  color: black;
+}
+
+.list-tasks .list-completed-tasks,
+.list-tasks .list-todo-tasks {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-tasks .list-todo-tasks {
+  border-bottom: 2px solid rgba(180, 180, 180, 0.378);
+  margin-bottom: 40px;
+}
