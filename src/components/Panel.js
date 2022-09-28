@@ -5,6 +5,7 @@ import AddTask from "./AddTask";
 import ListTasks from "./ListTasks";
 class Panel extends Component {
   state = {
+    historyListTasks: [],
     listTasks: [],
   };
 
@@ -23,9 +24,20 @@ class Panel extends Component {
   }
 
   updateListTasks(newListTasks) {
-    this.setState({
+    this.setState((prevState) => ({
+      historyListTasks: this.addPrevListTasksToHistory(
+        prevState.listTasks,
+        prevState.historyListTasks
+      ),
       listTasks: newListTasks,
-    });
+    }));
+  }
+
+  addPrevListTasksToHistory(listTasks, historyListTasks) {
+    const prevListTasks = listTasks.map((task) => task);
+    const historyTasks = historyListTasks.map((historyTasks) => historyTasks);
+    historyTasks.push(prevListTasks);
+    return historyTasks;
   }
 
   changeStatus(id) {
