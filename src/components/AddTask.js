@@ -50,7 +50,10 @@ class AddTask extends Component {
 
   setMinDateForInputTypeDate() {
     let currentDate = new Date().toLocaleDateString();
-    let changedPatternDate = currentDate.replace(/\./g, "-");
+    let day = currentDate.slice(0, 2);
+    let month = currentDate.slice(3, 5);
+    let year = currentDate.slice(6, 10);
+    let changedPatternDate = year + "-" + month + "-" + day;
     return changedPatternDate;
   }
 
