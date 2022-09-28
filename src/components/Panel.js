@@ -14,9 +14,8 @@ class Panel extends Component {
     this.updateListTasks(newListTasks);
   }
 
-  handleClickDeleteTask(element) {
-    let task = element.parentNode.parentNode;
-    let idTask = task.id;
+  handleClickDeleteTask(id) {
+    let idTask = id;
     let newListTasks = this.state.listTasks.filter(
       (task, index) => index != idTask
     );
@@ -29,9 +28,8 @@ class Panel extends Component {
     });
   }
 
-  changeStatus(element) {
-    let task = element.parentNode.parentNode;
-    let idTask = task.id;
+  changeStatus(id) {
+    let idTask = id;
     let newListTasks = this.state.listTasks.map((task, index) => {
       if (index == idTask) {
         task.active = false;
