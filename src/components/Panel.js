@@ -17,9 +17,8 @@ class Panel extends Component {
 
   handleClickDeleteTask(id) {
     let idTask = id;
-    let newListTasks = this.state.listTasks.filter(
-      (task, index) => index != idTask
-    );
+    let listTasks = [...this.state.listTasks];
+    let newListTasks = listTasks.filter((task, index) => index != idTask);
     this.updateListTasks(newListTasks);
   }
 
@@ -34,15 +33,16 @@ class Panel extends Component {
   }
 
   addPrevListTasksToHistory(listTasks, historyListTasks) {
-    const prevListTasks = listTasks.map((task) => task);
-    const historyTasks = historyListTasks.map((historyTasks) => historyTasks);
+    const prevListTasks = [...listTasks];
+    const historyTasks = [...historyListTasks];
     historyTasks.push(prevListTasks);
     return historyTasks;
   }
 
   changeStatus(id) {
     let idTask = id;
-    let newListTasks = this.state.listTasks.map((task, index) => {
+    let listTasks = [...this.state.listTasks];
+    let newListTasks = listTasks.map((task, index) => {
       if (index == idTask) {
         task.active = false;
         task.finishDate = this.createFinishDate();
