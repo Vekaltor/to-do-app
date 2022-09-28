@@ -32,12 +32,8 @@ function CompletedTasks({ listTasks, deleteTask }) {
   };
 
   const selectLastAddedCompletedTasks = (limit, listTasks) => {
-    const lastAddedCompletedTasks = [];
-    let positionOfLastTask = listTasks.length - 1;
-    let numberOfTasks = positionOfLastTask - limit;
-    for (let i = positionOfLastTask; i > numberOfTasks; i--) {
-      lastAddedCompletedTasks.push(listTasks[i]);
-    }
+    let lastAddedCompletedTasks = [];
+    lastAddedCompletedTasks = listTasks.slice(0, limit);
     return lastAddedCompletedTasks;
   };
 
@@ -46,8 +42,8 @@ function CompletedTasks({ listTasks, deleteTask }) {
   };
 
   const compareByFinishDateTask = (a, b) => {
-    if (a.props.finishDate > b.props.finishDate) return 1;
-    if (a.props.finishDate < b.props.finishDate) return -1;
+    if (a.props.finishDate > b.props.finishDate) return -1;
+    if (a.props.finishDate < b.props.finishDate) return 1;
     return 0;
   };
 

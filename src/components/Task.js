@@ -22,7 +22,6 @@ function Task(props) {
       ) : (
         <div className="task" id={id}>
           <div className="content">
-            {console.log(props)}
             <span className="text">{text}</span>
             <span className="date">{` (zrobić do ${date})`}</span>
             <span className="finish-date">- wykonane dnia {finishDate}</span>
