@@ -28,6 +28,8 @@ function TasksToDo({ listTasks, deleteTask, changeStatus }) {
   };
 
   const compareByTextTask = (a, b) => {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
     if (a.text < b.text) return -1;
     if (a.text > b.text) return 1;
     return 0;

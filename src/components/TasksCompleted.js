@@ -42,6 +42,8 @@ function CompletedTasks({ listTasks, deleteTask }) {
   };
 
   const compareByFinishDateTask = (a, b) => {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
     if (a.props.finishDate > b.props.finishDate) return -1;
     if (a.props.finishDate < b.props.finishDate) return 1;
     return 0;
