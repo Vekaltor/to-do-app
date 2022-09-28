@@ -4,12 +4,12 @@ function TasksToDo({ listTasks, deleteTask, changeStatus }) {
   const createList = () => {
     let tasks = [];
     let sortedListTasks = sortArray(listTasks);
-    sortedListTasks.forEach((task, index) => {
+    sortedListTasks.forEach((task) => {
       if (!task.active) return;
       tasks.push(
         <Task
-          key={index}
-          id={index}
+          key={task.id}
+          id={task.id}
           text={task.text}
           date={task.date}
           finishDate={task.finishDate}

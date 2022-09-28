@@ -7,6 +7,8 @@ class AddTask extends Component {
     date: "",
   };
 
+  counter = this.props.listTasks.length;
+
   handleChangeContentTask(e) {
     let newContentTask = e.target.value;
     this.setState({
@@ -39,12 +41,14 @@ class AddTask extends Component {
     let date = this.state.date;
     let priority = this.state.priority;
     let task = {
+      id: this.counter,
       text: text,
       date: date,
       priority: priority,
       finishDate: null,
       active: true,
     };
+    this.counter++;
     return task;
   }
 

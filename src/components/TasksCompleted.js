@@ -11,12 +11,12 @@ function CompletedTasks({ listTasks, deleteTask }) {
 
   const createList = () => {
     let completedTasks = [];
-    listTasks.forEach((task, index) => {
+    listTasks.forEach((task) => {
       if (task.active) return;
       completedTasks.push(
         <Task
-          key={index}
-          id={index}
+          key={task.id}
+          id={task.id}
           text={task.text}
           date={task.date}
           finishDate={task.finishDate}

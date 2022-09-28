@@ -10,15 +10,16 @@ class Panel extends Component {
   };
 
   handleClickAddTask(task) {
+    console.log(task);
     let newListTasks = [...this.state.listTasks];
     newListTasks.push(task);
     this.updateListTasks(newListTasks);
   }
 
   handleClickDeleteTask(id) {
-    let idTask = id;
+    let idTaskToDelete = id;
     let listTasks = [...this.state.listTasks];
-    let newListTasks = listTasks.filter((task, index) => index != idTask);
+    let newListTasks = listTasks.filter((task) => task.id != idTaskToDelete);
     this.updateListTasks(newListTasks);
   }
 
@@ -40,10 +41,10 @@ class Panel extends Component {
   }
 
   changeStatus(id) {
-    let idTask = id;
+    let idChangedTask = id;
     let listTasks = [...this.state.listTasks];
-    let newListTasks = listTasks.map((task, index) => {
-      if (index == idTask) {
+    let newListTasks = listTasks.map((task) => {
+      if (task.id == idChangedTask) {
         task.active = false;
         task.finishDate = this.createFinishDate();
       }
