@@ -1,13 +1,12 @@
 import React, { Component } from "react";
+import ButtonAddTask from "./ButtonAddTask";
 
 class AddTask extends Component {
   state = {
     contentTask: "",
     priority: false,
-    date: "",
+    date: this.setMinDateForInputTypeDate(),
   };
-
-  counter = this.props.listTasks.length;
 
   handleChangeContentTask(e) {
     let newContentTask = e.target.value;
@@ -29,26 +28,26 @@ class AddTask extends Component {
     });
   }
 
-  handleClick = (e) => {
+  handleClick = (e, clickAddTask, counterId, increaseCounterId) => {
     e.preventDefault();
     if (!this.state.contentTask || !this.state.date) return;
-    let task = this.createTask();
-    this.props.addTask(task);
+    let task = this.createTask(counterId, increaseCounterId);
+    clickAddTask(task);
   };
 
-  createTask() {
+  createTask(counterId, increaseCounterId) {
     let text = this.state.contentTask;
     let date = this.state.date;
     let priority = this.state.priority;
     let task = {
-      id: this.counter,
+      id: counterId,
       text: text,
       date: date,
       priority: priority,
       finishDate: null,
       active: true,
     };
-    this.counter++;
+    increaseCounterId();
     return task;
   }
 
@@ -82,7 +81,7 @@ class AddTask extends Component {
             Priorytet
           </label>
           <label>
-            Do kiedy zrobić{" "}
+            Do kiedy zrobić
             <input
               type="date"
               value={this.state.date}
@@ -90,7 +89,7 @@ class AddTask extends Component {
               min={this.setMinDateForInputTypeDate()}
             />
           </label>
-          <button onClick={(e) => this.handleClick(e)}>DODAJ</button>
+          <ButtonAddTask click={this.handleClick.bind(this)} />
         </form>
       </div>
     );

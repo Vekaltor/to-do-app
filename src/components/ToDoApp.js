@@ -1,13 +1,22 @@
 /* eslint-disable eqeqeq */
-import React, { Component } from "react";
-import AddTask from "./AddTask";
+import React, { PureComponent } from "react";
 
+import { ToDoContext, defaultObject } from "./ToDoContext";
+
+import AddTask from "./AddTask";
 import ListTasks from "./ListTasks";
-class Panel extends Component {
+
+class ToDoApp extends PureComponent {
   state = {
-    historyListTasks: [],
-    listTasks: [],
+    historyListTasks: defaultObject.historyListTasks,
+    listTasks: defaultObject.listTasks,
   };
+
+  counterId = this.state.listTasks.length;
+
+  increaseCounterId() {
+    this.counterId = this.counterId + 1;
+  }
 
   handleClickAddTask(task) {
     console.log(task);
@@ -62,19 +71,22 @@ class Panel extends Component {
   render() {
     return (
       <div>
-        <AddTask
-          listTasks={this.state.listTasks}
-          addTask={this.handleClickAddTask.bind(this)}
-        />
-        <ListTasks
-          listTasks={this.state.listTasks}
-          completedTasks={this.state.completedTasks}
-          deleteTask={this.handleClickDeleteTask.bind(this)}
-          changeStatus={this.changeStatus.bind(this)}
-        />
+        <ToDoContext.Provider
+          value={{
+            listTasks: this.state.listTasks,
+            counterId: this.counterId,
+            increaseCounterId: this.increaseCounterId.bind(this),
+            clickAddTask: this.handleClickAddTask.bind(this),
+            clickDeleteTask: this.handleClickDeleteTask.bind(this),
+            changeStatus: this.changeStatus.bind(this),
+          }}
+        >
+          <AddTask listTasks={this.state.listTasks} />
+          <ListTasks />
+        </ToDoContext.Provider>
       </div>
     );
   }
 }
 
-export default Panel;
+export default ToDoApp;

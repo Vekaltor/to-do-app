@@ -1,7 +1,8 @@
 import Task from "./Task";
+import { ToDoContext } from "./ToDoContext";
 
-function CompletedTasks({ listTasks, deleteTask }) {
-  const getNumberOfCompletedTasks = () => {
+function CompletedTasks() {
+  const getNumberOfCompletedTasks = (listTasks) => {
     let number = 0;
     listTasks.forEach((task) => {
       if (task.active === false) number++;
@@ -9,7 +10,7 @@ function CompletedTasks({ listTasks, deleteTask }) {
     return number;
   };
 
-  const createList = () => {
+  const createList = (listTasks, clickDeleteTask) => {
     let completedTasks = [];
     listTasks.forEach((task) => {
       if (task.active) return;
@@ -22,7 +23,7 @@ function CompletedTasks({ listTasks, deleteTask }) {
           finishDate={task.finishDate}
           priority={task.priority}
           active={task.active}
-          deleteTask={deleteTask}
+          deleteTask={clickDeleteTask}
         />
       );
     });
@@ -42,21 +43,25 @@ function CompletedTasks({ listTasks, deleteTask }) {
   };
 
   const compareByFinishDateTask = (a, b) => {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-    if (a.props.finishDate > b.props.finishDate) return -1;
-    if (a.props.finishDate < b.props.finishDate) return 1;
+    a = a.props.finishDate.toLowerCase();
+    b = b.props.finishDate.toLowerCase();
+    if (a > b) return -1;
+    if (a < b) return 1;
     return 0;
   };
 
   return (
-    <div className="list-completed-tasks">
-      <h3>zrobione zadania ({getNumberOfCompletedTasks()})</h3>
-      {getNumberOfCompletedTasks() > 5 ? (
-        <span>(5 ostatnich zadań)</span>
-      ) : null}
-      {createList()}
-    </div>
+    <ToDoContext.Consumer>
+      {({ listTasks, clickDeleteTask }) => (
+        <div className="list-completed-tasks">
+          <h3>zrobione zadania ({getNumberOfCompletedTasks(listTasks)})</h3>
+          {getNumberOfCompletedTasks(listTasks) > 5 ? (
+            <span>(5 ostatnich zadań)</span>
+          ) : null}
+          {createList(listTasks, clickDeleteTask)}
+        </div>
+      )}
+    </ToDoContext.Consumer>
   );
 }
 

@@ -1,10 +1,10 @@
 import "./App.css";
-import Panel from "./Panel";
+import ToDoApp from "./ToDoApp";
 
 function App() {
   return (
     <div className="App">
-      <Panel />
+      <ToDoApp />
     </div>
   );
 }

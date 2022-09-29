@@ -1,7 +1,8 @@
 import Task from "./Task";
+import { ToDoContext } from "./ToDoContext";
 
-function TasksToDo({ listTasks, deleteTask, changeStatus }) {
-  const createList = () => {
+function TasksToDo() {
+  const createList = (listTasks, clickDeleteTask, changeStatus) => {
     let tasks = [];
     let sortedListTasks = sortArray(listTasks);
     sortedListTasks.forEach((task) => {
@@ -16,7 +17,7 @@ function TasksToDo({ listTasks, deleteTask, changeStatus }) {
           priority={task.priority}
           active={task.active}
           changeStatus={changeStatus}
-          deleteTask={deleteTask}
+          deleteTask={clickDeleteTask}
         />
       );
     });
@@ -28,17 +29,21 @@ function TasksToDo({ listTasks, deleteTask, changeStatus }) {
   };
 
   const compareByTextTask = (a, b) => {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-    if (a.text < b.text) return -1;
-    if (a.text > b.text) return 1;
+    a = a.text.toLowerCase();
+    b = b.text.toLowerCase();
+    if (a < b) return -1;
+    if (a > b) return 1;
     return 0;
   };
 
   return (
     <div className="list-todo-tasks">
       <h1>Zadania do zrobienia</h1>
-      {createList()}
+      <ToDoContext.Consumer>
+        {({ listTasks, clickDeleteTask, changeStatus }) =>
+          createList(listTasks, clickDeleteTask, changeStatus)
+        }
+      </ToDoContext.Consumer>
     </div>
   );
 }
