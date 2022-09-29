@@ -28,11 +28,11 @@ function CompletedTasks() {
       );
     });
     let sortedCompletedTasks = sortArray(completedTasks);
-    completedTasks = selectLastAddedCompletedTasks(5, sortedCompletedTasks);
+    completedTasks = selectLastCompletedTasks(5, sortedCompletedTasks);
     return completedTasks;
   };
 
-  const selectLastAddedCompletedTasks = (limit, listTasks) => {
+  const selectLastCompletedTasks = (limit, listTasks) => {
     let lastAddedCompletedTasks = [];
     lastAddedCompletedTasks = listTasks.slice(0, limit);
     return lastAddedCompletedTasks;
@@ -55,6 +55,7 @@ function CompletedTasks() {
       {({ listTasks, clickDeleteTask }) => (
         <div className="list-completed-tasks">
           <h3>zrobione zadania ({getNumberOfCompletedTasks(listTasks)})</h3>
+
           {getNumberOfCompletedTasks(listTasks) > 5 ? (
             <span>(5 ostatnich zadań)</span>
           ) : null}

@@ -5,7 +5,7 @@ function ButtonAddTask({ click }) {
     <ToDoContext.Consumer>
       {({ clickAddTask, counterId, increaseCounterId }) => (
         <button
-          onClick={(e) => click(e, clickAddTask, counterId, increaseCounterId)}
+          onClick={() => click(clickAddTask, counterId, increaseCounterId)}
         >
           DODAJ
         </button>

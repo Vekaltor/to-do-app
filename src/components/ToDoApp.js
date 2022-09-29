@@ -81,7 +81,7 @@ class ToDoApp extends PureComponent {
             changeStatus: this.changeStatus.bind(this),
           }}
         >
-          <AddTask listTasks={this.state.listTasks} />
+          <AddTask />
           <ListTasks />
         </ToDoContext.Provider>
       </div>

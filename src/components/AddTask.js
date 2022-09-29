@@ -28,8 +28,11 @@ class AddTask extends Component {
     });
   }
 
-  handleClick = (e, clickAddTask, counterId, increaseCounterId) => {
+  handleSubmitForm(e) {
     e.preventDefault();
+  }
+
+  handleClick = (clickAddTask, counterId, increaseCounterId) => {
     if (!this.state.contentTask || !this.state.date) return;
     let task = this.createTask(counterId, increaseCounterId);
     clickAddTask(task);
@@ -63,7 +66,7 @@ class AddTask extends Component {
   render() {
     return (
       <div className="form-to-add-task">
-        <form>
+        <form onSubmit={(e) => this.handleSubmitForm(e)}>
           <label>
             <input
               type="text"
