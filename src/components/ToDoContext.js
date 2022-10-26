@@ -5,4 +5,4 @@ export const defaultObject = {
   listTasks: [],
 };
 
-export const ToDoContext = createContext();
+export const ToDoContext = createContext(defaultObject);
